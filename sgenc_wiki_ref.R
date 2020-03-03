@@ -1,4 +1,4 @@
-setwd("~/Desktop/test_script_wikipedia")
+setwd("~/Desktop")
 install.packages("httr")
 install.packages("jsonlite")
 install.packages("foreach")
