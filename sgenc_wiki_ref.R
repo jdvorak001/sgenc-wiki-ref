@@ -34,5 +34,6 @@ write_json(json,paste("ext_usage.json",sep = ""))
 page_id <- json$query$exturlusage$pageid
 title <- json$query$exturlusage$title
 url <- json$query$exturlusage$url
-write.csv(article_data_frame, paste("ext_usage.csv", sep = ""))
+ext_usage_data_frame <- data.frame(page_id, title, url)
+write.csv(ext_usage_data_frame, paste("ext_usage.csv", sep = ""))
 setwd('..')
