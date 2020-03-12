@@ -27,7 +27,7 @@ for(i in 1:nrow(sledovane_vyrazy_dataframe)){
   article_data_frame <- data.frame(article_titles, article_id, article_text_mention)
   write.csv(article_data_frame, paste(sledovane_vyrazy_dataframe$vyhledavany_vyraz[i],"_",st, ".csv", sep = ""))
 }
-url <- paste0("https://cs.wikipedia.org/w/api.php?action=query&list=exturlusage&euquery=encyklopedie.soc.cas.cz&euprotocol=https&eunamespace=*&eulimit=500format=json")
+url <- paste0("https://cs.wikipedia.org/w/api.php?action=query&list=exturlusage&euquery=encyklopedie.soc.cas.cz&euprotocol=https&eunamespace=*&eulimit=500&format=json")
 response <- GET(url)
 json <- fromJSON(rawToChar(response$content))
 write_json(json,paste("ext_usage.json",sep = ""))
