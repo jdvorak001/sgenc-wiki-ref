@@ -1,4 +1,4 @@
-setwd("~/sgenc-wiki-ref")
+setwd("/home/debian/sgenc-wiki-ref")
 install.packages("httr")
 install.packages("jsonlite")
 install.packages("foreach")
