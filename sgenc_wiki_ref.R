@@ -36,4 +36,13 @@ title <- json$query$exturlusage$title
 url <- json$query$exturlusage$url
 ext_usage_data_frame <- data.frame(page_id, title, url)
 write.csv(ext_usage_data_frame, paste("ext_usage.csv", sep = ""))
+url <- paste0("https://cs.wikipedia.org/w/api.php?action=query&list=exturlusage&euquery=encyklopedie.soc.cas.cz&euprotocol=http&eunamespace=*&eulimit=500&format=json")
+response <- GET(url)
+json_http <- fromJSON(rawToChar(response$content))
+write_json(json_http,paste("ext_usage_http.json",sep = ""))
+page_id_http <- json_http$query$exturlusage$pageid
+title_http <- json_http$query$exturlusage$title
+url_http <- json_http$query$exturlusage$url
+ext_usage_data_frame_http <- data.frame(page_id_http, title_http, url_http)
+write.csv(ext_usage_data_frame_http, paste("ext_usage_http.csv", sep = ""))
 setwd('..')
