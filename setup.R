@@ -10,15 +10,17 @@ if (!file.exists("./rstudio_data")){
 }
 
 
- print("data folder is empty, initiating import...") 
+if (length(dir("./rstudio_data",all.files=TRUE)) <= 2){
+ print("data folder is empty, initiating import...")
  #copy each ext_usage and add date stamp based on folder name
   folder_names <- list.files("./rstudio_import/")
-   print(paste("Reorganising..."))
-   for (folder in folder_names){
-     file.copy(from = paste("./rstudio_import/", folder,"/ext_usage.csv", sep = ""),
-               to = paste("./rstudio_data/",substr(folder, 0, 10),"_ext_usage.csv", sep = "")
-     )
-   }
+  print(paste("Reorganising..."))
+  for (folder in folder_names){
+    file.copy(from = paste("./rstudio_import/", folder,"/ext_usage.csv", sep = ""),
+              to = paste("./rstudio_data/",substr(folder, 0, 10),"_ext_usage.csv", sep = "")
+    )
+  }
+}
 
 
 
@@ -29,18 +31,18 @@ if("tibble" %in% rownames(installed.packages()) == FALSE) {install.packages("tib
 if("ggrepel" %in% rownames(installed.packages()) == FALSE) {install.packages("ggrepel")}
 if("tidyr" %in% rownames(installed.packages()) == FALSE) {install.packages("ggrepel")}
 
+
 library(readr)
 library(tibble)
 library(dplyr)
 library(ggplot2)
 library(ggrepel)
+library(tidyr)
 
-# load processing functions
 source("./init_dataset.R", echo = FALSE)
 source("./summarise.R", echo = FALSE)
 source("./graph.R", echo = FALSE)
 source("./analysis.R", echo = FALSE)
 
-# load original dataset and list of articles which contained edits
 ds <- init_dataset("./rstudio_data")
 ae <- add_page_id_to_ae(init_articles_edited(), ds)
