@@ -40,7 +40,6 @@ library(ggrepel)
 library(tidyr)
 
 source("./init_dataset.R", echo = FALSE)
-source("./summarise.R", echo = FALSE)
 source("./graph.R", echo = FALSE)
 source("./analysis.R", echo = FALSE)
 
